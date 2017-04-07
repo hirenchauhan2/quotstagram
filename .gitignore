@@ -1,6 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
+# Ignoring generated CSS
+/public/css/*.css
+# Ignoring generated Font for bootstrap
+/public/fonts/vendor
+# Ignoring generated JS
+/public/js/*.js
 /storage/*.key
 /vendor
 /.idea
