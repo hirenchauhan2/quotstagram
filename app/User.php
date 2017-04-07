@@ -26,4 +26,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Get All the Quotes by the User
+     */
+    public function quotes()
+    {
+      return $this->hasMany(Quote::class);
+    }
+
+    /**
+     * Get All Likes by User
+     */
+    public function likes()
+    {
+      return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Get all Comments
+     */
+    public function comments()
+    {
+      return $this->hasMany(Comment::class);
+    }
 }
