@@ -1,5 +1,9 @@
 <template>
   <div class="col-md-8 col-md-offset-2">
+    <div v-if="requestFinished" class="alert" :class="{ 'alert-danger': (errors && errors.reqFailed), 'alert-success': success, 'alert-info': reqStarted }">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <strong>{{ (errors && errors.reqFailed ) ? 'Oops' : 'Success' }}</strong> {{ message }}
+    </div>
     <div class="panel panel-default">
       <div class="panel-heading">Register</div>
         <div class="panel-body">
@@ -7,7 +11,7 @@
             <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.name) }">
               <label for="name" class="col-md-4 control-label">Name</label>
               <div class="col-md-6">
-                  <input id="name" type="text" class="form-control" name="name" v-model="name" @blur="checkValue('name', name)" required >
+                  <input id="name" type="text" class="form-control" name="name" v-model="name" @blur="checkValue('name', name)" required autofocus>
                   <span v-show="errors && errors.name" class="help-block">
                     <strong>{{ errors.name }}</strong>
                   </span>
@@ -82,6 +86,10 @@ export default {
       username: '',
       password: '',
       password_confirmation: '',
+      message: '',
+      success: false,
+      reqStarted: false,
+      requestFinished: false,
       errors: {}
     }
   },
@@ -121,40 +129,64 @@ export default {
       }
     },
 
+  // validate() {
+  //     // validations
+  //     if (!this.name.trim()) {
+  //       this.$set(this.errors, 'name', 'Enter your name')
+  //     }
+  //     if (!this.email.trim()) {
+  //       this.$set(this.errors, 'email', 'Enter your email')
+  //     } else if (!isEmail(this.email.trim())) {
+  //       this.$set(this.errors, 'email', 'Enter valid email')
+  //     }
+
+  //     if (!this.username.trim()) {
+  //       this.$set(this.errors, 'username', 'Enter your username')
+  //     }
+
+  //     if (!this.password.trim()) {
+  //       this.$set(this.errors, 'password', 'Enter your password')
+  //     }
+
+  //     if (!this.password_confirmation.trim()) {
+  //       this.$set(this.errors, 'password_confirmation', 'Enter password confirmation')
+  //     } else if (!this.passwordMatches) {
+  //       this.$set(this.errors, 'password_confirmation', 'Passwords does not match')
+  //     }
+  // },
+
     register() {
-      // validations
-      if (!this.name.trim()) {
-        this.$set(this.errors, 'name', 'Enter your name')
-      }
-      if (!this.email.trim()) {
-        this.$set(this.errors, 'email', 'Enter your email')
-      } else if (!isEmail(this.email.trim())) {
-        this.$set(this.errors, 'email', 'Enter valid email')
-      }
-
-      if (!this.username.trim()) {
-        this.$set(this.errors, 'username', 'Enter your username')
-      }
-
-      if (!this.password.trim()) {
-        this.$set(this.errors, 'password', 'Enter your password')
-      }
-
-      if (!this.password_confirmation.trim()) {
-        this.$set(this.errors, 'password_confirmation', 'Enter password confirmation')
-      }
-      else if (!this.passwordMatches) {
-        this.$set(this.errors, 'password_confirmation', 'Passwords does not match')
-      }
-
-      console.log(`Is the form is valid: ${this.valid}`)
       if (!this.valid) {
         console.log('NO SUBMIT')
         return;
       }
       // finally
-      console.log('SUBMIT')
-
+      console.log('SUBMITING The Form...')
+      this.reqStarted = true
+      axios.post('/register', {
+        name: this.name,
+        email: this.email,
+        username: this.username,
+        password: this.password,
+        password_confirmation: this.password_confirmation,
+      }).then((response) => {
+        this.reqStarted = false
+        this.requestFinished = true
+        const data = response.data
+        if (data.success) {
+          this.success = true
+          this.message = `Registration Success. Redirecting to: ${data.redirect}`
+          // Redirect to Home after successful registration
+          // User gets logged in also.
+          setTimeout(() => window.location = data.redirect, 1000)
+        }
+      }).catch((err) => {
+        this.reqStarted = false
+        this.requestFinished = true
+        this.message = err.message
+        this.$set(this.errors , 'reqFailed', true)
+        console.log("Error while signing up", err)
+      })
     }
   }
 }

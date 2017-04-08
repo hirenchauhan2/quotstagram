@@ -2,15 +2,18 @@
 /public/hot
 /public/storage
 # Ignoring generated CSS
-/public/css/*.css
+/public/css
 # Ignoring generated Font for bootstrap
-/public/fonts/vendor
+/public/fonts
 # Ignoring generated JS
-/public/js/*.js
+/public/js
 /storage/*.key
 /vendor
 /.idea
 /.vagrant
 Homestead.json
 Homestead.yaml
-# .env just for private repo
+# just for private repo
+# .env
+# Ignore redis generated content
+*.rdb
