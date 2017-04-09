@@ -1996,6 +1996,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				credentials = _.assign({}, credentials, { remember: true });
 			}
 			axios.post('/login', credentials).then(function (response) {
+				console.log(response);
 				// Request finished successfully
 				_this.reqFinished = true;
 				_this.reqStarted = false;
@@ -2106,6 +2107,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2119,9 +2124,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       password_confirmation: '',
       message: '',
       success: false,
-      reqStarted: false,
+      requestStarted: false,
       requestFinished: false,
-      errors: {}
+      requestFailed: false,
+      errors: {},
+      formErrors: []
     };
   },
 
@@ -2143,6 +2150,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   },
   methods: {
+    cleanData: function cleanData() {
+      this.name = '';
+      this.email = '';
+      this.username = '';
+      this.password = '';
+      this.password_confirmation = '';
+    },
+
     // validate perticular input
     checkValue: function checkValue(name, value) {
       value = value.trim();
@@ -2162,34 +2177,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
-
-
-    // validate() {
-    //     // validations
-    //     if (!this.name.trim()) {
-    //       this.$set(this.errors, 'name', 'Enter your name')
-    //     }
-    //     if (!this.email.trim()) {
-    //       this.$set(this.errors, 'email', 'Enter your email')
-    //     } else if (!isEmail(this.email.trim())) {
-    //       this.$set(this.errors, 'email', 'Enter valid email')
-    //     }
-
-    //     if (!this.username.trim()) {
-    //       this.$set(this.errors, 'username', 'Enter your username')
-    //     }
-
-    //     if (!this.password.trim()) {
-    //       this.$set(this.errors, 'password', 'Enter your password')
-    //     }
-
-    //     if (!this.password_confirmation.trim()) {
-    //       this.$set(this.errors, 'password_confirmation', 'Enter password confirmation')
-    //     } else if (!this.passwordMatches) {
-    //       this.$set(this.errors, 'password_confirmation', 'Passwords does not match')
-    //     }
-    // },
-
     register: function register() {
       var _this2 = this;
 
@@ -2199,7 +2186,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }
       // finally
       console.log('SUBMITING The Form...');
-      this.reqStarted = true;
+      this.requestStarted = true;
       axios.post('/register', {
         name: this.name,
         email: this.email,
@@ -2207,10 +2194,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         password: this.password,
         password_confirmation: this.password_confirmation
       }).then(function (response) {
-        _this2.reqStarted = false;
+        _this2.requestStarted = false;
         _this2.requestFinished = true;
         var data = response.data;
         if (data.success) {
+          _this2.cleanData();
           _this2.success = true;
           _this2.message = 'Registration Success. Redirecting to: ' + data.redirect;
           // Redirect to Home after successful registration
@@ -2220,11 +2208,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           }, 1000);
         }
       }).catch(function (err) {
-        _this2.reqStarted = false;
+        _this2.requestStarted = false;
         _this2.requestFinished = true;
-        _this2.message = err.message;
-        _this2.$set(_this2.errors, 'reqFailed', true);
-        console.log("Error while signing up", err);
+        _this2.requestFailed = true;
+        if (err.response) {
+          var errData = err.response.data;
+          var errArray = _.keys(errData).map(function (key) {
+            return _.first(errData[key]);
+          });
+          _this2.formErrors = errArray;
+          _this2.message = 'Please check errors below:';
+        } else {
+          _this2.message = 'There was some error on server. Please try again.';
+        }
+        _this2.cleanData();
       });
     }
   }
@@ -32035,13 +32032,13 @@ var Component = __webpack_require__(8)(
   /* script */
   __webpack_require__(30),
   /* template */
-  __webpack_require__(39),
+  __webpack_require__(40),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/harry/MEGA/Laravel/quotinsta/resources/assets/js/components/Login.vue"
+Component.options.__file = "C:\\Users\\HARRY\\Documents\\code\\quotestagram\\resources\\assets\\js\\components\\Login.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32052,9 +32049,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-34b08fbf", Component.options)
+    hotAPI.createRecord("data-v-b4d417ac", Component.options)
   } else {
-    hotAPI.reload("data-v-34b08fbf", Component.options)
+    hotAPI.reload("data-v-b4d417ac", Component.options)
   }
 })()}
 
@@ -32069,13 +32066,13 @@ var Component = __webpack_require__(8)(
   /* script */
   __webpack_require__(31),
   /* template */
-  __webpack_require__(40),
+  __webpack_require__(39),
   /* scopeId */
   null,
   /* cssModules */
   null
 )
-Component.options.__file = "/home/harry/MEGA/Laravel/quotinsta/resources/assets/js/components/Register.vue"
+Component.options.__file = "C:\\Users\\HARRY\\Documents\\code\\quotestagram\\resources\\assets\\js\\components\\Register.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Register.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32086,9 +32083,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4cf8fcbd", Component.options)
+    hotAPI.createRecord("data-v-2399bc72", Component.options)
   } else {
-    hotAPI.reload("data-v-4cf8fcbd", Component.options)
+    hotAPI.reload("data-v-2399bc72", Component.options)
   }
 })()}
 
@@ -32102,185 +32099,10 @@ module.exports = Component.exports
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-8 col-md-offset-2"
-  }, [(_vm.reqFailed) ? _c('div', {
-    staticClass: "alert alert-danger"
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "alert",
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v("Oops!")]), _vm._v(" " + _vm._s(_vm.message) + "\n\t")]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Login")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_c('form', {
-    ref: "login",
-    staticClass: "form-horizontal",
-    attrs: {
-      "role": "form",
-      "method": "POST",
-      "action": "/login"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.login()
-      }
-    }
-  }, [_c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': _vm.errors && _vm.errors.username
-    }
-  }, [_c('label', {
-    staticClass: "col-md-4 control-label",
-    attrs: {
-      "for": "username"
-    }
-  }, [_vm._v("Username")]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.username),
-      expression: "username"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "username",
-      "type": "text",
-      "name": "username",
-      "required": "",
-      "autofocus": ""
-    },
-    domProps: {
-      "value": (_vm.username)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.username = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.errors && _vm.errors.username) ? _c('span', {
-    staticClass: "help-block"
-  }, [_c('strong', [_vm._v(_vm._s(_vm.errors.username))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-error': _vm.errors && _vm.errors.password
-    }
-  }, [_c('label', {
-    staticClass: "col-md-4 control-label",
-    attrs: {
-      "for": "password"
-    }
-  }, [_vm._v("Password")]), _vm._v(" "), _c('div', {
-    staticClass: "col-md-6"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.password),
-      expression: "password"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "id": "password",
-      "type": "password",
-      "name": "password",
-      "required": ""
-    },
-    domProps: {
-      "value": (_vm.password)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.password = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.errors && _vm.errors.password) ? _c('span', {
-    staticClass: "help-block"
-  }, [_c('strong', [_vm._v(_vm._s(_vm.errors.password))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "col-md-6 col-md-offset-4"
-  }, [_c('div', {
-    staticClass: "checkbox"
-  }, [_c('label', [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.remember),
-      expression: "remember"
-    }],
-    attrs: {
-      "type": "checkbox",
-      "name": "remember"
-    },
-    domProps: {
-      "checked": Array.isArray(_vm.remember) ? _vm._i(_vm.remember, null) > -1 : (_vm.remember)
-    },
-    on: {
-      "__c": function($event) {
-        var $$a = _vm.remember,
-          $$el = $event.target,
-          $$c = $$el.checked ? (true) : (false);
-        if (Array.isArray($$a)) {
-          var $$v = null,
-            $$i = _vm._i($$a, $$v);
-          if ($$c) {
-            $$i < 0 && (_vm.remember = $$a.concat($$v))
-          } else {
-            $$i > -1 && (_vm.remember = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-          }
-        } else {
-          _vm.remember = $$c
-        }
-      }
-    }
-  }), _vm._v(" Remember Me\n                            ")])])])]), _vm._v(" "), _vm._m(0)])])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-4"
-  }, [_c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("\n                            Login\n                        ")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-link",
-    attrs: {
-      "href": "/password/forgot"
-    }
-  }, [_vm._v("\n                            Forgot Your Password?\n                        ")])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-34b08fbf", module.exports)
-  }
-}
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
   }, [(_vm.requestFinished) ? _c('div', {
     staticClass: "alert",
     class: {
-      'alert-danger': (_vm.errors && _vm.errors.reqFailed), 'alert-success': _vm.success, 'alert-info': _vm.reqStarted
+      'alert-danger': _vm.requestFailed, 'alert-success': _vm.success
     }
   }, [_c('button', {
     staticClass: "close",
@@ -32289,7 +32111,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "data-dismiss": "alert",
       "aria-hidden": "true"
     }
-  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s((_vm.errors && _vm.errors.reqFailed) ? 'Oops' : 'Success'))]), _vm._v(" " + _vm._s(_vm.message) + "\n  ")]) : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s((_vm.requestFailed) ? 'Oops' : 'Success'))]), _vm._v(" " + _vm._s(_vm.message) + "\n    "), (_vm.formErrors && _vm.formErrors.length) ? _c('ul', _vm._l((_vm.formErrors), function(error) {
+    return _c('li', [_vm._v(_vm._s(error))])
+  })) : _vm._e()]) : _vm._e(), _vm._v(" "), _c('div', {
     staticClass: "panel panel-default"
   }, [_c('div', {
     staticClass: "panel-heading"
@@ -32556,7 +32380,182 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4cf8fcbd", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-2399bc72", module.exports)
+  }
+}
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [(_vm.reqFailed) ? _c('div', {
+    staticClass: "alert alert-danger"
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "alert",
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v("Oops!")]), _vm._v(" " + _vm._s(_vm.message) + "\r\n\t")]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Login")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_c('form', {
+    ref: "login",
+    staticClass: "form-horizontal",
+    attrs: {
+      "role": "form",
+      "method": "POST",
+      "action": "/login"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.login()
+      }
+    }
+  }, [_c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors && _vm.errors.username
+    }
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "username"
+    }
+  }, [_vm._v("Username")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.username),
+      expression: "username"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "username",
+      "type": "text",
+      "name": "username",
+      "required": "",
+      "autofocus": ""
+    },
+    domProps: {
+      "value": (_vm.username)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.username = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.errors && _vm.errors.username) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.errors.username))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-error': _vm.errors && _vm.errors.password
+    }
+  }, [_c('label', {
+    staticClass: "col-md-4 control-label",
+    attrs: {
+      "for": "password"
+    }
+  }, [_vm._v("Password")]), _vm._v(" "), _c('div', {
+    staticClass: "col-md-6"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.password),
+      expression: "password"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "id": "password",
+      "type": "password",
+      "name": "password",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.password = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.errors && _vm.errors.password) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.errors.password))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "col-md-6 col-md-offset-4"
+  }, [_c('div', {
+    staticClass: "checkbox"
+  }, [_c('label', [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.remember),
+      expression: "remember"
+    }],
+    attrs: {
+      "type": "checkbox",
+      "name": "remember"
+    },
+    domProps: {
+      "checked": Array.isArray(_vm.remember) ? _vm._i(_vm.remember, null) > -1 : (_vm.remember)
+    },
+    on: {
+      "__c": function($event) {
+        var $$a = _vm.remember,
+          $$el = $event.target,
+          $$c = $$el.checked ? (true) : (false);
+        if (Array.isArray($$a)) {
+          var $$v = null,
+            $$i = _vm._i($$a, $$v);
+          if ($$c) {
+            $$i < 0 && (_vm.remember = $$a.concat($$v))
+          } else {
+            $$i > -1 && (_vm.remember = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+          }
+        } else {
+          _vm.remember = $$c
+        }
+      }
+    }
+  }), _vm._v(" Remember Me\r\n                            ")])])])]), _vm._v(" "), _vm._m(0)])])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-4"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("\r\n                            Login\r\n                        ")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-link",
+    attrs: {
+      "href": "/password/forgot"
+    }
+  }, [_vm._v("\r\n                            Forgot Your Password?\r\n                        ")])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-b4d417ac", module.exports)
   }
 }
 

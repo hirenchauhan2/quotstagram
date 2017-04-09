@@ -106,6 +106,7 @@ export default {
 			credentials = _.assign({}, credentials, { remember: true })
 		}
 		axios.post('/login', credentials).then((response) => {
+            console.log(response)
 			// Request finished successfully
 			this.reqFinished = true
 			this.reqStarted = false

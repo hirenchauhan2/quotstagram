@@ -50,4 +50,9 @@ class User extends Authenticatable
     {
       return $this->hasMany(Comment::class);
     }
+
+    public function postQuote(Quote $quote)
+    {
+        auth()->user()->quotes()->save($quote);
+    }
 }

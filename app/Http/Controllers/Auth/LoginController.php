@@ -40,4 +40,16 @@ class LoginController extends Controller
     protected function username() {
         return 'username';
     }
+    /**
+     * Called when the user is authenticated
+     * @param Illuminate\Http\Request $request
+     * @param mixed  $user    The Authenticated User
+     * @return JSON Response
+     */
+    protected function authenticated($request, $user) {
+        return [
+            'success' => true,
+            'redirect' => url('/home')
+        ];
+    }
 }

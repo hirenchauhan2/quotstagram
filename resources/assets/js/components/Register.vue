@@ -1,8 +1,12 @@
 <template>
   <div class="col-md-8 col-md-offset-2">
-    <div v-if="requestFinished" class="alert" :class="{ 'alert-danger': (errors && errors.reqFailed), 'alert-success': success, 'alert-info': reqStarted }">
+    <div v-if="requestFinished" class="alert" 
+      :class="{ 'alert-danger': requestFailed, 'alert-success': success }">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <strong>{{ (errors && errors.reqFailed ) ? 'Oops' : 'Success' }}</strong> {{ message }}
+      <strong>{{ ( requestFailed ) ? 'Oops' : 'Success' }}</strong> {{ message }}
+      <ul v-if="formErrors && formErrors.length">
+        <li v-for="error in formErrors">{{ error }}</li>
+      </ul>
     </div>
     <div class="panel panel-default">
       <div class="panel-heading">Register</div>
@@ -88,9 +92,11 @@ export default {
       password_confirmation: '',
       message: '',
       success: false,
-      reqStarted: false,
+      requestStarted: false,
       requestFinished: false,
-      errors: {}
+      requestFailed: false,
+      errors: {},
+      formErrors: []
     }
   },
   computed: {
@@ -109,6 +115,13 @@ export default {
     }
   },
   methods: {
+    cleanData() {    
+      this.name= ''
+      this.email= ''
+      this.username= ''
+      this.password= ''
+      this.password_confirmation= ''
+    },
     // validate perticular input
     checkValue(name, value) {
       value = value.trim()
@@ -129,32 +142,6 @@ export default {
       }
     },
 
-  // validate() {
-  //     // validations
-  //     if (!this.name.trim()) {
-  //       this.$set(this.errors, 'name', 'Enter your name')
-  //     }
-  //     if (!this.email.trim()) {
-  //       this.$set(this.errors, 'email', 'Enter your email')
-  //     } else if (!isEmail(this.email.trim())) {
-  //       this.$set(this.errors, 'email', 'Enter valid email')
-  //     }
-
-  //     if (!this.username.trim()) {
-  //       this.$set(this.errors, 'username', 'Enter your username')
-  //     }
-
-  //     if (!this.password.trim()) {
-  //       this.$set(this.errors, 'password', 'Enter your password')
-  //     }
-
-  //     if (!this.password_confirmation.trim()) {
-  //       this.$set(this.errors, 'password_confirmation', 'Enter password confirmation')
-  //     } else if (!this.passwordMatches) {
-  //       this.$set(this.errors, 'password_confirmation', 'Passwords does not match')
-  //     }
-  // },
-
     register() {
       if (!this.valid) {
         console.log('NO SUBMIT')
@@ -162,7 +149,7 @@ export default {
       }
       // finally
       console.log('SUBMITING The Form...')
-      this.reqStarted = true
+      this.requestStarted = true
       axios.post('/register', {
         name: this.name,
         email: this.email,
@@ -170,10 +157,11 @@ export default {
         password: this.password,
         password_confirmation: this.password_confirmation,
       }).then((response) => {
-        this.reqStarted = false
+        this.requestStarted = false
         this.requestFinished = true
         const data = response.data
         if (data.success) {
+          this.cleanData()
           this.success = true
           this.message = `Registration Success. Redirecting to: ${data.redirect}`
           // Redirect to Home after successful registration
@@ -181,11 +169,18 @@ export default {
           setTimeout(() => window.location = data.redirect, 1000)
         }
       }).catch((err) => {
-        this.reqStarted = false
+        this.requestStarted = false
         this.requestFinished = true
-        this.message = err.message
-        this.$set(this.errors , 'reqFailed', true)
-        console.log("Error while signing up", err)
+        this.requestFailed = true
+        if (err.response) {
+          const errData = err.response.data
+          const errArray = _.keys(errData).map(key => _.first(errData[key]))
+          this.formErrors = errArray
+          this.message = 'Please check errors below:'
+        } else {
+          this.message = 'There was some error on server. Please try again.'
+        }
+        this.cleanData()
       })
     }
   }
