@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Quote extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'text', 'font_family'
+    ];
+
+    /**
      * Get the Author of the quote
      */
     public function user()
@@ -28,5 +37,16 @@ class Quote extends Model
     public function likes()
     {
       return $this->hasMany(Like::class);
+    }
+
+    /**
+     * Add Like on Quote
+     *
+     * @param Like $like
+     * @return void
+     */
+    public function addLike(Like $like)
+    {
+      return $this->likes()->save($like);
     }
 }

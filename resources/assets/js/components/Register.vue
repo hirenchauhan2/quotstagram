@@ -1,48 +1,59 @@
 <template>
-  <div class="col-md-8 col-md-offset-2">
-    <div v-if="requestFinished" class="alert" 
-      :class="{ 'alert-danger': requestFailed, 'alert-success': success }">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <div class="col col-md-6 registration">
+    <div v-if="requestFinished" :class="{ 'alert-danger': requestFailed, 'alert-success': success }"  class="alert alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       <strong>{{ ( requestFailed ) ? 'Oops' : 'Success' }}</strong> {{ message }}
       <ul v-if="formErrors && formErrors.length">
         <li v-for="error in formErrors">{{ error }}</li>
       </ul>
     </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">Register</div>
+    <div class="card">
         <div class="panel-body">
-          <form @submit.prevent="register()" class="form-horizontal" ref="form" role="form" method="POST" action="/register">
-            <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.name) }">
-              <label for="name" class="col-md-4 control-label">Name</label>
-              <div class="col-md-6">
-                  <input id="name" type="text" class="form-control" name="name" v-model="name" @blur="checkValue('name', name)" required autofocus>
-                  <span v-show="errors && errors.name" class="help-block">
+          <h1 class="card-title text-center">Register</h1>
+          <form @submit.prevent="register()" ref="form" role="form" method="POST" action="/register" autocomplete="false">
+            <div class="form-group" :class="{ 'has-danger': (errors && errors.name) }">
+              <label for="name" class="col form-control-label">Name</label>
+              <div class="col">
+                  <input 
+                    id="name" type="text" class="form-control"
+                    :class="{ 'form-control-danger': (errors && errors.name) }"
+                    name="name"
+                    v-model="name" 
+                    @blur="checkValue('name', name)" 
+                    required autofocus>
+                  <span v-show="errors && errors.name" class="form-control-feedback">
                     <strong>{{ errors.name }}</strong>
                   </span>
               </div>
             </div>
-            <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.email) }">
-              <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-              <div class="col-md-6">
-                <input id="email" type="email" class="form-control" name="email" v-model="email" @blur="checkValue('email', email)" required>
-                <span v-show="errors && errors.email" class="help-block">
+            <div class="form-group" :class="{ 'has-danger': (errors && errors.email) }">
+              <label for="email" class="col form-control-label">E-Mail Address</label>
+              <div class="col">
+                <input id="email" type="email" class="form-control" name="email" v-model="email" @blur="checkValue('email', email)"
+                :class="{ 'form-control-danger': (errors && errors.email) }"
+                required>
+                <span v-show="errors && errors.email" class="form-control-feedback">
                   <strong>{{ errors.email }}</strong>
                 </span>
               </div>
             </div>
-            <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.username) }">
-              <label for="username" class="col-md-4 control-label">Username</label>
-              <div class="col-md-6">
-                <input id="username" type="text" class="form-control" name="username" v-model="username" @blur="checkValue('username', username)" required>
-                <span v-show="errors && errors.username" class="help-block">
+            <div class="form-group" :class="{ 'has-danger': (errors && errors.username) }">
+              <label for="username" class="col form-control-label">Username</label>
+              <div class="col ">
+                <input id="username" type="text" class="form-control" name="username" v-model="username" @blur="checkValue('username', username)"
+                :class="{ 'form-control-danger': (errors && errors.username) }"
+                 required>
+                <span v-show="errors && errors.username" class="form-control-feedback">
                   <strong>{{ errors.username }}</strong>
                   </span>
               </div>
             </div>
-            <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.password) }">
-              <label for="password" class="col-md-4 control-label">Password</label>
+            <div class="form-group" :class="{ 'has-danger': (errors && errors.password) }">
+              <label for="password" class="col form-control-label">Password</label>
 
-              <div class="col-md-6">
+              <div class="col ">
                   <input
                     id="password"
                     type="password"
@@ -50,25 +61,28 @@
                     name="password"
                     v-model="password"
                     @blur="checkValue('password', password)"
+                    :class="{ 'form-control-danger': (errors && errors.password) }"
                     required>
-                  <span v-show="errors && errors.password" class="help-block">
+                  <span v-show="errors && errors.password" class="form-control-feedback">
                       <strong>{{ errors.password }}</strong>
                   </span>
               </div>
           </div>
-            <div class="form-group" v-bind:class="{ 'has-error': (errors && errors.password_confirmation) }">
-                <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+            <div class="form-group" :class="{ 'has-danger': (errors && errors.password_confirmation) }">
+                <label for="password-confirm" class="col form-control-label">Confirm Password</label>
 
-                <div class="col-md-6">
+                <div class="col ">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" v-model="password_confirmation"
-                    @blur="checkValue('password_confirmation', password_confirmation)" required>
-                    <span v-show="errors && errors.password_confirmation" class="help-block">
+                    @blur="checkValue('password_confirmation', password_confirmation)"
+                    :class="{ 'form-control-danger': (errors && errors.password_confirmation) }"
+                    required>
+                    <span v-show="errors && errors.password_confirmation" class="form-control-feedback">
                         <strong>{{ errors.password_confirmation }}</strong>
                     </span>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6 col-md-offset-4">
+                <div class="col">
                     <button :disabled="!valid" type="submit" class="btn btn-primary">
                         Register
                     </button>
@@ -79,6 +93,12 @@
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+  .registration {
+    margin-bottom: 100px!important;
+    z-index: 100;
+  }
+</style>
 <script>
 import isEmail from '../utils/isEmail'
 

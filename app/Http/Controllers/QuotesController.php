@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Quote;
+use App\Comment;
+use App\Like;
+
 use Illuminate\Http\Request;
 
-class QuoteController extends Controller
+class QuotesController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +33,7 @@ class QuoteController extends Controller
      */
     public function create()
     {
-        //
+        return view('quotes.create');
     }
 
     /**
@@ -37,7 +44,21 @@ class QuoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request
+        $this->validate($request, [
+            'text' => 'required',
+            'font_family' => 'required'
+        ]);
+
+        // Create  the Quote
+        auth()->user()->postQuote(new Quote($request->only('text', 'font_family')));
+
+        //$request->session()->flash('message', 'Quote posted successfully!');
+        
+        return [
+            'success' => true,
+            'message' => 'Quote created successfully.'
+        ];
     }
 
     /**
@@ -62,6 +83,12 @@ class QuoteController extends Controller
         //
     }
 
+    public function explore()
+    {
+        $quotes = Quote::latest()->get();
+        return view('quotes.explore', compact('quotes'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -82,6 +109,21 @@ class QuoteController extends Controller
      */
     public function destroy(Quote $quote)
     {
-        //
+        if( $ $quote->likes()->delete()) {
+           if( $quote->delete())
+           {
+               return [
+                   'success' => true
+               ];
+           }
+        }
+        return [
+            'success' => false
+        ];
+    }
+
+    public function quotesByUser($user)
+    {
+        # code...
     }
 }

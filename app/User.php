@@ -34,25 +34,36 @@ class User extends Authenticatable
     {
       return $this->hasMany(Quote::class);
     }
-
+    
     /**
-     * Get All Likes by User
+     * User can like many quotes
+     *
      */
     public function likes()
     {
-      return $this->hasMany(Like::class);
+        return $this->hasMany(Like::class);
     }
 
     /**
-     * Get all Comments
+     * Saves quote to Database
+     * @param  App\Quote  $quote 
+     * @return void
      */
-    public function comments()
-    {
-      return $this->hasMany(Comment::class);
-    }
-
     public function postQuote(Quote $quote)
     {
-        auth()->user()->quotes()->save($quote);
+       $this->quotes()->save($quote);
+    }
+
+    public function likesQuote(Quote $quote)
+    {
+        $likes = Like::where([
+                    [ 'user_id'  , '=' , $this->id ],
+                    [ 'quote_id' , '=' , $quote->id ]
+                ])->first();
+
+        if (!$likes) {
+            return false;
+        }
+        return true;
     }
 }

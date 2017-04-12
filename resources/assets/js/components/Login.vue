@@ -1,19 +1,22 @@
 <template>
-<div class="col-md-8 col-md-offset-2">
-	<div v-if="reqFailed" class="alert alert-danger">
-		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>Oops!</strong> {{ message }}
+<div class="col col-md-6">
+	<div v-if="reqFailed" class="alert alert-danger alert-dismissible fade show" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+    </button>
+		<h3 class="alert-heading">Oops!</h3>
+    <p>{{ message }}</p>
 	</div>
-    <div class="panel panel-default">
-        <div class="panel-heading">Login</div>
-        <div class="panel-body">
-            <form @submit.prevent="login()" class="form-horizontal" role="form" method="POST" action="/login" ref="login">
+    <div class="card">
+        <div class="card-block">
+            <h1 class="card-title text-center">Login</h1>
+            <form @submit.prevent="login()" role="form" method="POST" action="/login" ref="login">
 
                 <div class="form-group"
-                :class="{ 'has-error': errors && errors.username }">
-                    <label for="username" class="col-md-4 control-label">Username</label>
+                :class="{ 'has-danger': errors && errors.username }">
+                    <label for="username" class="col control-label">Username</label>
 
-                    <div class="col-md-6">
+                    <div class="col">
                         <input id="username" type="text" class="form-control" name="username" v-model="username" required autofocus>
                         <span v-if="errors && errors.username" class="help-block">
                             <strong>{{ errors.username }}</strong>
@@ -22,10 +25,10 @@
                 </div>
 
                 <div class="form-group"
-                	:class="{ 'has-error': errors && errors.password }">
-                    <label for="password" class="col-md-4 control-label">Password</label>
+                	:class="{ 'has-danger': errors && errors.password }">
+                    <label for="password" class="col control-label">Password</label>
 
-                    <div class="col-md-6">
+                    <div class="col">
                         <input id="password" type="password" class="form-control" name="password" v-model="password" required>
                         <span v-if="errors && errors.password" class="help-block">
                             <strong>{{ errors.password }}</strong>
@@ -34,24 +37,24 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-6 col-md-offset-4">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="remember" v-model="remember"> Remember Me
+                    <div class="col">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" name="remember" v-model="remember"> Remember Me
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-md-8 col-md-offset-4">
+                    <div class="col">
                         <button type="submit" class="btn btn-primary">
                             Login
                         </button>
 
-                        <a class="btn btn-link" href="/password/forgot">
+                        <!-- <a class="btn btn-link" href="/passwords/reset">
                             Forgot Your Password?
-                        </a>
+                        </a> -->
                     </div>
                 </div>
             </form>
@@ -74,6 +77,7 @@ export default {
 		reqFinished: false,
 		reqFailed: false,
 		message: '',
+        resErrors: [],
 		errors: {}
     }
   },
@@ -124,8 +128,13 @@ export default {
 			this.reqFinished =  true
 			this.reqFailed = true
 			this.reqStarted = false
-			this.message = err.message
-			console.log('Error', err)
+            if (err.response && err.response.data) {
+                const data = err.response.data
+                this.message = Object.keys(data).map(k => {
+                    return data[k]
+                }).join('<br>')
+    			console.log('Error', err)
+            }
 		})
   	}
   }

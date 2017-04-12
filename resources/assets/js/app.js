@@ -15,7 +15,8 @@ require('./bootstrap')
 
 Vue.component('registration', require('./components/Register.vue'))
 Vue.component('login', require('./components/Login.vue'))
+Vue.component('QuoteComposer', require('./components/QuoteComposer.vue'))
 
 const app = new Vue({
-    el: '#app'
+	el: '#app'
 })

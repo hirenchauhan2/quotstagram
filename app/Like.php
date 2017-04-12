@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
+    protected $fillable = ['user_id', 'quote_id'];
+
     /**
      * Get the User who liked the Quote
      * @return User User who liked the quote

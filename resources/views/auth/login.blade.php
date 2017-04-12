@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container slideInDown">
-    <div class="row">
+    <div class="row justify-content-center">
         <login></login>
     </div>
 </div>
