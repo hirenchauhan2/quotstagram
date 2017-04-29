@@ -1,8 +1,52 @@
 CACHE MANIFEST
-#ver:4/12/2017, 1:55:05 PM
+#ver:4/28/2017, 12:46:28 PM
 #plugin:4.6.2
 
 CACHE:
+../fonts/arapey-regular-webfont.eot?7d292a37c6b1e2a0d517f86c8fc26d4f
+../fonts/badscript-regular-webfont.eot?5667bf00ee0241b099f385a69ea3ec76
+../fonts/billabong-webfont.eot?258b028fac31571dc3e34920fdd80e47
+../fonts/fontawesome-webfont.eot?674f50d287a8c48dc19ba404d20fe713
+../fonts/handlee-regular-webfont.eot?a371bdae58e081c1ebadb1de680457a5
+../fonts/philosopher-regular-webfont.eot?d9d15ee9c1ac286c9fba8146ab07727e
+../fonts/poiretone-regular-webfont.eot?43baf21f815c5a4192287f9125c00b32
+../fonts/raleway-regular-webfont.eot?081e7947f0d167bbe737917b049781b7
+../fonts/spirax-regular-webfont.eot?099eb048277949975e4685f7e126bc92
+../fonts/arapey-regular-webfont.svg?32dd6aaef91d0c58f5bdd5a882266ee4
+../fonts/arapey-regular-webfont.ttf?aa4ce403971e1acdb3ef95ec4249b53d
+../fonts/arapey-regular-webfont.woff?63977363d16b4a47c49342a4f21c7030
+../fonts/arapey-regular-webfont.woff2?2c0102a6f7763abb20548ab1160df44e
+../fonts/badscript-regular-webfont.svg?b89bf16ef34b477652a70481fc588e59
+../fonts/badscript-regular-webfont.ttf?5c6b08ce2d53936fb1d1f1fd7905595d
+../fonts/badscript-regular-webfont.woff?9c016e6929fd1fb5f8815ce64209cd09
+../fonts/badscript-regular-webfont.woff2?4d1ad12f0bde3f97b4ce6b96477eea12
+../fonts/billabong-webfont.svg?9e4a3fdbbc03442c7844d542e8a05ba4
+../fonts/billabong-webfont.ttf?9e027aa9f30326cdd794fa25446f0ac2
+../fonts/billabong-webfont.woff?65ee16278d11cf98e01efdf0b58d78d8
+../fonts/fontawesome-webfont.svg?acf3dcb7ff752b5296ca23ba2c7c2606
+../fonts/fontawesome-webfont.ttf?b06871f281fee6b241d60582ae9369b9
+../fonts/fontawesome-webfont.woff?fee66e712a8a08eef5805a46892932ad
+../fonts/fontawesome-webfont.woff2?af7ae505a9eed503f8b8e6982036873e
+../fonts/handlee-regular-webfont.svg?cea5fbc94a34b6b68dc4f4fe974a2131
+../fonts/handlee-regular-webfont.ttf?f9a127eab8c96c746241dc43c67a0dba
+../fonts/handlee-regular-webfont.woff?082ca7798d8231c0b7b1821ffd91b4dc
+../fonts/handlee-regular-webfont.woff2?580464cd5b2b50b04c32fe2919c67e87
+../fonts/philosopher-regular-webfont.svg?02063c4149a1beb2837a61eb5096ca7c
+../fonts/philosopher-regular-webfont.ttf?bb3b107dcdeba8ff8ef87b7a829564c0
+../fonts/philosopher-regular-webfont.woff?07aac63993cb7136c5d817a3deaaf07f
+../fonts/philosopher-regular-webfont.woff2?9ea01c4f52baf517ee8963b626a7407b
+../fonts/poiretone-regular-webfont.svg?176a051a8d8deb02763e5887905a3efc
+../fonts/poiretone-regular-webfont.ttf?e18b178ee0f1c7473e34c071517aa681
+../fonts/poiretone-regular-webfont.woff?64f3af78f4f44c26f3e48be42022bf88
+../fonts/poiretone-regular-webfont.woff2?36439a631c6a22943ec412bc0e6e523a
+../fonts/raleway-regular-webfont.svg?48ecaa49289c9b1ed02b6e226c9dd2c0
+../fonts/raleway-regular-webfont.ttf?9dea09f27e294f1035b475cad12e83a6
+../fonts/raleway-regular-webfont.woff?13aba690203ccf1836fcbaca34f1a1a0
+../fonts/raleway-regular-webfont.woff2?c11ab7dd84940fe81dca8a748e07a817
+../fonts/spirax-regular-webfont.svg?1d9864ea4682fcd700ac4bc8f1cb804d
+../fonts/spirax-regular-webfont.ttf?f03e317c9f05c73fae3a2b27a1e6fb61
+../fonts/spirax-regular-webfont.woff?66f5a5c0c558e61dd9307b0d6b67a0f5
+../fonts/spirax-regular-webfont.woff2?100f27b1f2a7fc8739d1240777c9b9a7
 /js/app.js
 /css/app.css
 ../mix-manifest.json

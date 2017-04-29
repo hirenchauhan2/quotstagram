@@ -1,6 +1,11 @@
 /node_modules
 /public/hot
 /public/storage
+# Ignoring appcache
+/public/appcache
+# Ignoring sw.js
+/public/sw.js
+/public/mix-manifest.json
 # Ignoring generated CSS
 /public/css
 # Ignoring generated Font for bootstrap

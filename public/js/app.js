@@ -12980,14 +12980,14 @@ function isEmail(email) {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
-exports.push([module.i, "\ntextarea.form-control[data-v-7c53a254] {\n  font-size: 1.5rem;\n}\n.quote-preview[data-v-7c53a254] {\n  padding-left: 5px;\n  font-size: 2rem;\n}\n", ""]);
+exports.push([module.i, "\n.registration[data-v-88fe37ce] {\n  margin-bottom: 100px !important;\n  z-index: 100;\n}\n", ""]);
 
 /***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(11)();
-exports.push([module.i, "\n.registration[data-v-de13880e] {\n  margin-bottom: 100px !important;\n  z-index: 100;\n}\n", ""]);
+exports.push([module.i, "\ntextarea.form-control[data-v-fb60ca94] {\n  font-size: 1.5rem;\n}\n.quote-preview[data-v-fb60ca94] {\n  padding-left: 5px;\n  font-size: 2rem;\n}\n", ""]);
 
 /***/ }),
 /* 40 */
@@ -32954,7 +32954,7 @@ var Component = __webpack_require__(4)(
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\HARRY\\Documents\\Code\\Quotstagram\\resources\\assets\\js\\components\\Login.vue"
+Component.options.__file = "C:\\Users\\Harry\\Documents\\MEGA\\Laravel\\quotstagram\\resources\\assets\\js\\components\\Login.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -32965,9 +32965,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5761fa03", Component.options)
+    hotAPI.createRecord("data-v-127545e3", Component.options)
   } else {
-    hotAPI.reload("data-v-5761fa03", Component.options)
+    hotAPI.reload("data-v-127545e3", Component.options)
   }
 })()}
 
@@ -32980,19 +32980,19 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(50)
+__webpack_require__(51)
 
 var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(48),
+  __webpack_require__(49),
   /* scopeId */
-  "data-v-7c53a254",
+  "data-v-fb60ca94",
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\HARRY\\Documents\\Code\\Quotstagram\\resources\\assets\\js\\components\\QuoteComposer.vue"
+Component.options.__file = "C:\\Users\\Harry\\Documents\\MEGA\\Laravel\\quotstagram\\resources\\assets\\js\\components\\QuoteComposer.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] QuoteComposer.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -33003,9 +33003,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-7c53a254", Component.options)
+    hotAPI.createRecord("data-v-fb60ca94", Component.options)
   } else {
-    hotAPI.reload("data-v-7c53a254", Component.options)
+    hotAPI.reload("data-v-fb60ca94", Component.options)
   }
 })()}
 
@@ -33018,19 +33018,19 @@ module.exports = Component.exports
 
 
 /* styles */
-__webpack_require__(51)
+__webpack_require__(50)
 
 var Component = __webpack_require__(4)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(49),
+  __webpack_require__(48),
   /* scopeId */
-  "data-v-de13880e",
+  "data-v-88fe37ce",
   /* cssModules */
   null
 )
-Component.options.__file = "C:\\Users\\HARRY\\Documents\\Code\\Quotstagram\\resources\\assets\\js\\components\\Register.vue"
+Component.options.__file = "C:\\Users\\Harry\\Documents\\MEGA\\Laravel\\quotstagram\\resources\\assets\\js\\components\\Register.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] Register.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -33041,9 +33041,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-de13880e", Component.options)
+    hotAPI.createRecord("data-v-88fe37ce", Component.options)
   } else {
-    hotAPI.reload("data-v-de13880e", Component.options)
+    hotAPI.reload("data-v-88fe37ce", Component.options)
   }
 })()}
 
@@ -33229,161 +33229,12 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5761fa03", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-127545e3", module.exports)
   }
 }
 
 /***/ }),
 /* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('form', {
-    attrs: {
-      "action": "/quotes",
-      "method": "POST",
-      "role": "form"
-    },
-    on: {
-      "submit": function($event) {
-        $event.preventDefault();
-        _vm.submit()
-      }
-    }
-  }, [_c('h1', [_vm._v("Create an Awesome Quote")]), _vm._v(" "), (_vm.requestFinished) ? _c('div', {
-    staticClass: "alert",
-    class: {
-      'alert-danger': _vm.requestFailed, 'alert-success': _vm.requestSucced
-    }
-  }, [_c('button', {
-    staticClass: "close",
-    attrs: {
-      "type": "button",
-      "data-dismiss": "alert",
-      "aria-hidden": "true"
-    }
-  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s(_vm.requestSucced ? 'Success' : 'Oops'))]), _vm._v(" " + _vm._s(_vm.message) + "\n\t\t")]) : _vm._e(), _vm._v(" "), _c('div', {
-    staticClass: "form-group",
-    class: {
-      'has-danger': (_vm.errors && _vm.errors.text)
-    }
-  }, [_c('label', {
-    attrs: {
-      "for": "text"
-    }
-  }, [_vm._v("Quote")]), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.text),
-      expression: "text"
-    }],
-    staticClass: "form-control form-control-lg",
-    class: {
-      'form-control-danger': (_vm.errors && _vm.errors.text)
-    },
-    attrs: {
-      "name": "text",
-      "id": "text",
-      "rows": "3",
-      "required": ""
-    },
-    domProps: {
-      "value": (_vm.text)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.text = $event.target.value
-      }
-    }
-  }), _vm._v(" "), (_vm.errors && _vm.errors.text) ? _c('span', {
-    staticClass: "help-block"
-  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.errors.text) + "\n\t\t\t\t")]) : _vm._e()]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    attrs: {
-      "for": "font_family"
-    }
-  }, [_vm._v("Font")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.font_family),
-      expression: "font_family"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "name": "font_family",
-      "id": "inputFont",
-      "required": ""
-    },
-    on: {
-      "change": function($event) {
-        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        });
-        _vm.font_family = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": "raleway",
-      "selected": ""
-    }
-  }, [_vm._v("Raleway")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "arapey"
-    }
-  }, [_vm._v("Arapey")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "spirax"
-    }
-  }, [_vm._v("Spirax")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "philosopher"
-    }
-  }, [_vm._v("Philosopher")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "poiret_one"
-    }
-  }, [_vm._v("Poiret One")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "bad_script"
-    }
-  }, [_vm._v("Bad Script")]), _vm._v(" "), _c('option', {
-    attrs: {
-      "value": "handlee"
-    }
-  }, [_vm._v("Handlee")])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('strong', [_vm._v("Preview")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
-    staticClass: "quote-preview",
-    class: 'font-' + _vm.font_family
-  }, [_vm._v(_vm._s(_vm.text))])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "form-group"
-  }, [_c('button', {
-    staticClass: "btn btn-primary",
-    attrs: {
-      "type": "submit"
-    }
-  }, [_vm._v("Submit")])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-7c53a254", module.exports)
-  }
-}
-
-/***/ }),
-/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33694,7 +33545,156 @@ module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-de13880e", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-88fe37ce", module.exports)
+  }
+}
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('form', {
+    attrs: {
+      "action": "/quotes",
+      "method": "POST",
+      "role": "form"
+    },
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        _vm.submit()
+      }
+    }
+  }, [_c('h1', [_vm._v("Create an Awesome Quote")]), _vm._v(" "), (_vm.requestFinished) ? _c('div', {
+    staticClass: "alert",
+    class: {
+      'alert-danger': _vm.requestFailed, 'alert-success': _vm.requestSucced
+    }
+  }, [_c('button', {
+    staticClass: "close",
+    attrs: {
+      "type": "button",
+      "data-dismiss": "alert",
+      "aria-hidden": "true"
+    }
+  }, [_vm._v("×")]), _vm._v(" "), _c('strong', [_vm._v(_vm._s(_vm.requestSucced ? 'Success' : 'Oops'))]), _vm._v(" " + _vm._s(_vm.message) + "\n\t\t")]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "form-group",
+    class: {
+      'has-danger': (_vm.errors && _vm.errors.text)
+    }
+  }, [_c('label', {
+    attrs: {
+      "for": "text"
+    }
+  }, [_vm._v("Quote")]), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.text),
+      expression: "text"
+    }],
+    staticClass: "form-control form-control-lg",
+    class: {
+      'form-control-danger': (_vm.errors && _vm.errors.text)
+    },
+    attrs: {
+      "name": "text",
+      "id": "text",
+      "rows": "3",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.text)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.text = $event.target.value
+      }
+    }
+  }), _vm._v(" "), (_vm.errors && _vm.errors.text) ? _c('span', {
+    staticClass: "help-block"
+  }, [_vm._v("\n\t\t\t\t\t" + _vm._s(_vm.errors.text) + "\n\t\t\t\t")]) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    attrs: {
+      "for": "font_family"
+    }
+  }, [_vm._v("Font")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.font_family),
+      expression: "font_family"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "name": "font_family",
+      "id": "inputFont",
+      "required": ""
+    },
+    on: {
+      "change": function($event) {
+        var $$selectedVal = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        });
+        _vm.font_family = $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": "raleway",
+      "selected": ""
+    }
+  }, [_vm._v("Raleway")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "arapey"
+    }
+  }, [_vm._v("Arapey")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "spirax"
+    }
+  }, [_vm._v("Spirax")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "philosopher"
+    }
+  }, [_vm._v("Philosopher")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "poiret_one"
+    }
+  }, [_vm._v("Poiret One")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "bad_script"
+    }
+  }, [_vm._v("Bad Script")]), _vm._v(" "), _c('option', {
+    attrs: {
+      "value": "handlee"
+    }
+  }, [_vm._v("Handlee")])])]), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('strong', [_vm._v("Preview")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('p', {
+    staticClass: "quote-preview",
+    class: 'font-' + _vm.font_family
+  }, [_vm._v(_vm._s(_vm.text))])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "form-group"
+  }, [_c('button', {
+    staticClass: "btn btn-primary",
+    attrs: {
+      "type": "submit"
+    }
+  }, [_vm._v("Submit")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-fb60ca94", module.exports)
   }
 }
 
@@ -33709,13 +33709,13 @@ var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(12)("6b647ea8", content, false);
+var update = __webpack_require__(12)("25bcd43e", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7c53a254\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./QuoteComposer.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-7c53a254\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./QuoteComposer.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-88fe37ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Register.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-88fe37ce\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Register.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -33735,13 +33735,13 @@ var content = __webpack_require__(39);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(12)("614fb6cb", content, false);
+var update = __webpack_require__(12)("09e10ebe", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-de13880e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Register.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-de13880e\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Register.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-fb60ca94\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./QuoteComposer.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-fb60ca94\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./QuoteComposer.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
