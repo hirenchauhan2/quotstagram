@@ -43,10 +43,17 @@ class Quote extends Model
      * Add Like on Quote
      *
      * @param Like $like
-     * @return void
+     * @return mixed
      */
     public function addLike(Like $like)
     {
       return $this->likes()->save($like);
+    }
+
+    /**
+    * Add comment on Quote
+    */
+    public function addComment(Comment $comment) {
+      return $this->comments()->save($comment);
     }
 }

@@ -1,39 +1,43 @@
 <template>
-	<form @submit.prevent="postComment()" :action="'/quotes/'+quote+'/comments'" method="post" class="form form-inline">
-		<input type="text" name="comment" v-model="comment">
-		<div v-if="err" class="help-block">
+	<form @submit.prevent="postComment()" method="post" class="form form-inline">
+		<input type="text" name="text" v-model="text">
+		<div v-if="requestFailed" class="help-block">
 			{{ message }}
 		</div>
 	</form>
 </template>
 <script>
 export default {
-	props: ['quote'],
-	data() {
-		return {
-			message: '',
-			comment: '',
-			requestStarted: false,
-			requestFinished: false,
-			requestFailed: false,
-		}
-	},
-	methdos: {
-		postComment() {
-			if (!this.comment.trim()) {
-				return;
-			}
-			const url= '/quotes/'+this.quote+'/comment'
-			axios.post(url, {
-				comment: this.comment
-			}).then(resp => {
-				if(resp.data.success) {
-					this.comment = ''
-				} 
-			}).catch(err=> {
-				this.message = err.response.data || err.message
-			})
-		}
-	}
-}
+  props: ['quote'],
+  data() {
+    return {
+      message: '',
+      text: '',
+      requestStarted: false,
+      requestFinished: false,
+      requestFailed: false,
+    };
+  },
+  methods: {
+    postComment() {
+      if (!this.text.trim()) {
+        return;
+      }
+      const url = `/quotes/${this.quote}/comments`;
+      axios
+        .post(url, {
+          text: this.text,
+        })
+        .then(resp => {
+          if (resp.data.success) {
+            this.text = '';
+          }
+          console.log(resp.data);
+        })
+        .catch(err => {
+          this.message = err.response.data || err.message;
+        });
+    },
+  },
+};
 </script>

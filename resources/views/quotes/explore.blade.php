@@ -81,8 +81,9 @@
 <style>
 	.container.explore {
 		margin-bottom: 50px;
+		margin-top: 80px;
 	}
-	.right{
+	.right {
 		float: right;
 	}
 	.btn-quote-options {

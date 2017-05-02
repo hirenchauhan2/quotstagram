@@ -1,11 +1,10 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap')
+require('./bootstrap');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13,10 +12,11 @@ require('./bootstrap')
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('registration', require('./components/Register.vue'))
-Vue.component('login', require('./components/Login.vue'))
-Vue.component('QuoteComposer', require('./components/QuoteComposer.vue'))
+Vue.component('registration', require('./components/Register.vue'));
+Vue.component('login', require('./components/Login.vue'));
+Vue.component('QuoteComposer', require('./components/QuoteComposer.vue'));
+Vue.component('CommentComposer', require('./components/CommentComposer.vue'));
 
 const app = new Vue({
-	el: '#app'
-})
+  el: '#app',
+});

@@ -34,7 +34,7 @@ class User extends Authenticatable
     {
       return $this->hasMany(Quote::class);
     }
-    
+
     /**
      * User can like many quotes
      *
@@ -43,10 +43,17 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+    /**
+    * User can comment on quotes
+    */
+    public function comments()
+    {
+      return $this->hasMany(Comment::class);
+    }
 
     /**
      * Saves quote to Database
-     * @param  App\Quote  $quote 
+     * @param  App\Quote  $quote
      * @return void
      */
     public function postQuote(Quote $quote)

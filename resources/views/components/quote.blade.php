@@ -30,6 +30,33 @@
 			@endif
 		</span>
 		&nbsp;&nbsp;
+		<span class="comments-count">
+			@if (count($quote->comments) === 0)
+				0 Comments
+			@elseif (count($quote->comments) === 1)
+				1 Comment
+			@else
+				{{ count($quote->comments) }} Comments
+			@endif
+		</span>
+	</div>
+	<div class="card-block">
+		<comment-composer :quote="{{ $quote->id }}"></comment-composer>
+	</div>
+	<div class="card-block comments-list">
+		<ul>
+			@foreach ($quote->comments as $comment)
+				<li class="comment-item">
+					<span class="comment--user">
+						{{ $comment->user->name }}
+					</span>
+					&nbsp;&nbsp;&nbsp;
+					<p>
+						{{ $comment->text }}
+					</p>
+				</li>
+			@endforeach
+		</ul>
 	</div>
 	{{-- @if (Auth::id() === $quote->user->id)
 		<a href="#collapse" onclick="_.debounce(deleteQuote({{$quote->id}}), 300)">Remove Quote</a>

@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+    /**
+     * Mass assignable value for a modek
+     * @var string[]
+     */
+    protected $fillable = [ 'text', 'user_id', 'quote_id', 'author_liked' ];
+
     /*
     *  Get the Quote on which this comment  has been made
     */

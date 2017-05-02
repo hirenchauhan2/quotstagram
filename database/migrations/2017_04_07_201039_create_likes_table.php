@@ -15,13 +15,18 @@ class CreateLikesTable extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('quote_id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('quote_id')->unsigned();
             $table->timestamps();
 
             // Create unique contraint with user and quote
             // So that one User can like the Quote only once.
             $table->unique(['user_id', 'quote_id']);
+
+            // remove likes when the quote is removed
+            $table->foreign('quote_id')
+                  ->references('id')->on('quotes')
+                  ->onDelete('cascade');
         });
     }
 
